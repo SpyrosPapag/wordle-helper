@@ -1,15 +1,16 @@
 #include <fstream>
-#include <vector>
 #include <string>
+#include <list>
 
 using namespace std;
 
-vector<string> readfile(string filename){
+
+list<string> readfile(string filename){
     ifstream inputFile(filename);
 
     if (inputFile.good())
      {
-        vector<string> words;
+        list<string> words;
         string current_sring = "";
         while (inputFile >> current_sring)
         	words.push_back(current_sring);
@@ -23,11 +24,11 @@ vector<string> readfile(string filename){
 
 }
 
-void writetofile(vector<string> words){
+void writetofile(list<string> words){
     ofstream outputfile;
     outputfile.open ("output.txt");
-    for (int count = 0; count <(int)words.size(); count++){
-    outputfile << words[count] << " ";
+    for (auto iterator = words.begin(); iterator != words.end(); iterator++){
+        outputfile << *iterator << " ";
     }
     outputfile.close();
 }
